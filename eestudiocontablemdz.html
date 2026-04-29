@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC · Consultora</title>
+<meta name="description" content="Asesoramiento contable integral para particulares y empresas en toda Argentina. Atención personalizada, honorarios claros, respuesta rápida.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #1a2e4f;
+    --navy-deep: #0f1e36;
+    --gold: #b8956a;
+    --gold-light: #d4b88a;
+    --cream: #faf7f2;
+    --cream-dark: #f0ebe0;
+    --text: #2a2a2a;
+    --text-muted: #6b6b6b;
+    --border: rgba(26, 46, 79, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  .serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ===== NAVEGACIÓN ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 2rem;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.15em;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--navy);
+    font-size: 1.5rem;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8rem 0 4rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(184, 149, 106, 0.08) 0%, transparent 70%);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-content {
+    animation: fadeUp 1s ease-out 0.2s both;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--navy);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--navy);
+    color: var(--cream);
+  }
+
+  .btn-primary:hover {
+    background: var(--navy-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(26, 46, 79, 0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--navy);
+  }
+
+  .btn-secondary:hover {
+    background: var(--navy);
+    color: var(--cream);
+  }
+
+  .btn-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .btn:hover .btn-arrow { transform: translateX(4px); }
+
+  /* Logo del hero */
+  .hero-logo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.2s ease-out 0.4s both;
+  }
+
+  .logo-svg {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+
+  .logo-svg .letter-a { fill: var(--navy); }
+  .logo-svg .letter-c { fill: var(--gold); }
+
+  /* ===== SECCIONES ===== */
+  section {
+    padding: 7rem 0;
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ===== SOBRE MÍ ===== */
+  .about {
+    background: var(--cream-dark);
+    position: relative;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-image {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .about-image::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    border: 1px solid var(--gold);
+    z-index: -1;
+    border-radius: 2px;
+  }
+
+  .about-image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    padding: 2rem;
+    line-height: 1.8;
+  }
+
+  .about-content .section-eyebrow { text-align: left; }
+
+  .about-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .about-content h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .about-content p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .credentials {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .credential-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .credential-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .credential-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+  }
+
+  /* ===== SERVICIOS ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .service-card {
+    padding: 3rem 2.5rem;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(26, 46, 79, 0.08);
+    border-color: transparent;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ===== POR QUÉ ===== */
+  .why {
+    background: var(--navy);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 149, 106, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .why .section-title { color: var(--cream); }
+  .why .section-title em { color: var(--gold-light); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .why-item {
+    text-align: center;
+  }
+
+  .why-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+  }
+
+  .why-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--gold-light);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .why-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .why-item p {
+    color: rgba(250, 247, 242, 0.75);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ===== CONTACTO ===== */
+  .contact {
+    background: var(--cream-dark);
+  }
+
+  .contact-intro {
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .contact-intro p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+  }
+
+  .contact-step {
+    text-align: center;
+  }
+
+  .contact-step-number {
+    width: 48px;
+    height: 48px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 auto 1rem;
+  }
+
+  .contact-step h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-step p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Calendario incrustado */
+  .calendar-wrapper {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(26, 46, 79, 0.08);
+  }
+
+  .calendar-wrapper iframe {
+    width: 100%;
+    min-height: 800px;
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    .contact-steps {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .calendar-wrapper {
+      padding: 1rem;
+    }
+
+    .calendar-wrapper iframe {
+      min-height: 1000px;
+    }
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+
+  .contact-card {
+    padding: 3.5rem 3rem;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(26, 46, 79, 0.1);
+  }
+
+  .contact-card.featured {
+    background: var(--navy);
+    color: var(--cream);
+    border-color: var(--navy);
+  }
+
+  .contact-card.featured h3,
+  .contact-card.featured .contact-price { color: var(--cream); }
+
+  .contact-card.featured .contact-description { color: rgba(250, 247, 242, 0.75); }
+
+  .contact-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .contact-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 1.5rem 0;
+    font-weight: 400;
+  }
+
+  .contact-price small {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .contact-card.featured .contact-price small { color: rgba(250, 247, 242, 0.6); }
+
+  .contact-description {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 4rem 0 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand span { color: var(--gold); }
+
+  .footer-tagline {
+    color: rgba(250, 247, 242, 0.7);
+    font-size: 0.95rem;
+    max-width: 350px;
+    line-height: 1.7;
+  }
+
+  .footer-col h4 {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 0.7rem;
+  }
+
+  .footer-col a,
+  .footer-col span {
+    color: rgba(250, 247, 242, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-col a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(250, 247, 242, 0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(250, 247, 242, 0.5);
+  }
+
+  /* ===== ANIMACIONES ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+
+    .hero { padding: 7rem 0 4rem; min-height: auto; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-logo { order: -1; max-width: 200px; margin: 0 auto; }
+    .logo-svg { max-width: 180px; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image { max-width: 320px; margin: 0 auto; }
+
+    .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+    section { padding: 5rem 0; }
+
+    .credentials { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .hero-cta { flex-direction: column; }
+    .btn { width: 100%; justify-content: center; }
+  }
+
+  /* Menú mobile */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--cream);
+    padding: 5rem 2rem 2rem;
+    transition: right 0.4s ease;
+    z-index: 99;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  .mobile-menu.open { right: 0; }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .mobile-menu a {
+    color: var(--navy);
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== MODAL DE PAGO ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 30, 54, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal {
+    background: var(--cream);
+    max-width: 960px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 3.5rem 3rem;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+
+  .modal-overlay.open .modal {
+    transform: translateY(0);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--navy);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+
+  .modal-close:hover {
+    background: var(--cream-dark);
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .modal-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .modal-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .modal-price-summary {
+    text-align: center;
+    margin-top: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+  }
+
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .payment-card {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .payment-card.recommended {
+    border: 2px solid var(--gold);
+    background: linear-gradient(180deg, var(--cream) 0%, rgba(184, 149, 106, 0.04) 100%);
+  }
+
+  .payment-card.recommended::before {
+    content: 'Recomendado';
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    font-weight: 500;
+    border-radius: 2px;
+  }
+
+  .payment-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(26, 46, 79, 0.08);
+  }
+
+  .payment-icon {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .payment-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .payment-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .payment-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .payment-methods {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    padding: 0;
+  }
+
+  .payment-methods li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .payment-methods li:last-child {
+    border-bottom: none;
+  }
+
+  .payment-methods li::before {
+    content: '—';
+    color: var(--gold);
+  }
+
+  .payment-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .payment-card .btn {
+    margin-top: auto;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Bloque de datos bancarios */
+  .bank-details {
+    display: none;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+  }
+
+  .bank-details.visible {
+    display: block;
+    animation: fadeUp 0.4s ease-out;
+  }
+
+  .bank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(26, 46, 79, 0.08);
+    gap: 1rem;
+  }
+
+  .bank-row:last-child {
+    border-bottom: none;
+  }
+
+  .bank-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .bank-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    text-align: right;
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 0.5rem;
+  }
+
+  .copy-btn:hover {
+    background: var(--navy);
+    color: var(--cream);
+  }
+
+  .copy-btn.copied {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  /* Paso final: WhatsApp */
+  .whatsapp-step {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .whatsapp-step h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .whatsapp-step p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+    border: none;
+  }
+
+  .btn-whatsapp:hover {
+    background: #1fa855;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(37, 211, 102, 0.3);
+  }
+
+  .legal-note {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(184, 149, 106, 0.08);
+    border-left: 2px solid var(--gold);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  @media (max-width: 700px) {
+    .modal {
+      padding: 2.5rem 1.5rem;
+      max-height: 95vh;
+    }
+    .payment-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .bank-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+    .bank-value {
+      text-align: left;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A<span>C</span></div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#por-que">Por qué elegirme</a></li>
+    <li><a href="#agendar">Agendar</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Menú">☰</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#por-que">Por qué elegirme</a></li>
+    <li><a href="#agendar">Agendar</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Consultora · Asesoramiento en todo el país</div>
+        <h1>Claridad contable, <em>decisiones con confianza</em>.</h1>
+        <p class="hero-tagline">
+          Asesoramiento contable integral para particulares y empresas.
+          Acompañamiento cercano, honorarios transparentes y respuestas
+          cuando las necesitás.
+        </p>
+        <div class="hero-cta">
+          <a href="#agendar" class="btn btn-primary">
+            Agendar consulta
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="https://wa.me/54NUMERODEWHATSAPP" class="btn btn-secondary">
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-logo">
+        <!-- Logo SVG inspirado en la tarjeta -->
+        <svg class="logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Letra A -->
+          <text class="letter-a" x="90" y="230"
+                font-family="Cormorant Garamond, serif"
+                font-size="280"
+                font-weight="400">A</text>
+          <!-- Letra C (superpuesta, desplazada) -->
+          <text class="letter-c" x="200" y="320"
+                font-family="Cormorant Garamond, serif"
+                font-size="280"
+                font-weight="400">C</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="about" id="sobre-mi">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <div class="about-image-placeholder">
+          [FOTO<br>PROFESIONAL]
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-eyebrow">Sobre mí</span>
+        <h2>Contadora pública, <em>con mirada humana</em>.</h2>
+        <p>
+          Soy Analuz Bricia Cruz Condori, contadora pública nacional
+          matriculada en Argentina. Acompaño a particulares y empresas
+          en sus decisiones económicas con un enfoque claro, cercano
+          y sin tecnicismos innecesarios.
+        </p>
+        <p>
+          Creo que la contabilidad no debería ser una caja negra.
+          Mi trabajo es traducir números en información útil para que
+          vos puedas tomar decisiones con tranquilidad, desde cualquier
+          provincia del país.
+        </p>
+
+        <div class="credentials">
+          <div class="credential-item">
+            <span class="credential-label">Matrícula</span>
+            <span class="credential-value">Nº 9596</span>
+          </div>
+          <div class="credential-item">
+            <span class="credential-label">Alcance</span>
+            <span class="credential-value">Todo el país</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Servicios</span>
+      <h2 class="section-title">Asesoramiento <em>integral</em></h2>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <h3>Monotributo</h3>
+        <p>
+          Inscripciones, recategorizaciones, altas y bajas.
+          Asesoramiento sobre la categoría que mejor se adapta
+          a tu actividad y facturación.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">02</div>
+        <h3>Inscripciones y alta de impuestos</h3>
+        <p>
+          Gestión integral de impuestos mensuales y anuales.
+          Planes de pago y gestión de trámites con ARCA
+          y organismos provinciales.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">03</div>
+        <h3>Sociedades</h3>
+        <p>
+          Constitución de sociedades, gestión integral
+          de impuestos mensuales y anuales, planes de pago.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">04</div>
+        <h3>Impuestos a las Ganancias y Bienes Personales</h3>
+        <p>
+          Declaraciones juradas anuales, planificación fiscal,
+          deducciones personales.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">05</div>
+        <h3>Sueldos y Cargas Sociales</h3>
+        <p>
+          Liquidación de sueldos, altas tempranas, F931,
+          aguinaldos y todas las obligaciones laborales
+          y previsionales.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">06</div>
+        <h3>Asesoramiento Financiero</h3>
+        <p>
+          Planificación fiscal, cash-flow, presupuestos
+          a 12 meses y proyecciones financieras para tomar
+          mejores decisiones.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">07</div>
+        <h3>Certificaciones</h3>
+        <p>
+          Certificación de ingresos, manifestación de bienes,
+          certificación de licitud de fondos.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">08</div>
+        <h3>Asesoramiento a medida</h3>
+        <p>
+          Consultas específicas, planificación fiscal,
+          análisis de viabilidad, acompañamiento en
+          decisiones económicas importantes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="why" id="por-que">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" style="color: var(--gold-light);">Por qué elegirme</span>
+      <h2 class="section-title">Un <em>enfoque distinto</em></h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Respuesta rápida</h3>
+        <p>
+          No quedarte esperando días por una respuesta.
+          Canales de contacto claros y tiempos definidos.
+        </p>
+      </div>
+
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Lenguaje claro</h3>
+        <p>
+          Te explico lo que necesitás saber, sin jerga técnica
+          innecesaria. Vas a entender qué hacemos y por qué.
+        </p>
+      </div>
+
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+        </div>
+        <h3>Honorarios transparentes</h3>
+        <p>
+          Sabés desde el primer momento cuánto vas a pagar.
+          Sin sorpresas ni costos escondidos.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="agendar" style="scroll-margin-top: 80px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Agendá tu consulta</span>
+      <h2 class="section-title">Elegí <em>tu horario</em></h2>
+    </div>
+
+    <div class="contact-intro reveal">
+      <p>
+        Consulta profesional de 1 hora por videollamada. $50.000 final.
+        Seleccioná el día y horario que mejor te convenga.
+      </p>
+    </div>
+
+    <div class="contact-steps reveal">
+      <div class="contact-step">
+        <div class="contact-step-number">1</div>
+        <h4>Elegí tu horario</h4>
+        <p>Seleccioná fecha y hora en el calendario</p>
+      </div>
+      <div class="contact-step">
+        <div class="contact-step-number">2</div>
+        <h4>Realizá el pago</h4>
+        <p>Mercado Pago o transferencia directa</p>
+      </div>
+      <div class="contact-step">
+        <div class="contact-step-number">3</div>
+        <h4>Confirmación</h4>
+        <p>Recibís link de Meet una vez verificado</p>
+      </div>
+    </div>
+
+    <div class="calendar-wrapper reveal">
+      <!-- Cal.com embed -->
+      <div 
+        style="width:100%;height:100%;min-height:800px"
+        data-cal-link="analuz-cruz-dyxp23/consulta-profesional-contable"
+        data-cal-config='{"layout":"month_view","theme":"light"}'
+      ></div>
+      <script type="text/javascript">
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", {origin:"https://cal.com"});
+        Cal("inline", {
+          elementOrSelector:"div[data-cal-link='analuz-cruz-dyxp23/consulta-profesional-contable']",
+          calLink: "analuz-cruz-dyxp23/consulta-profesional-contable",
+          layout: "month_view",
+          config: {
+            theme: "light"
+          }
+        });
+        Cal("ui", {"theme":"light","styles":{"branding":{"brandColor":"#b8956a"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      </script>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 600px; margin: 0 auto;">
+        ¿Preferís consultar algo primero? 
+        <a href="https://wa.me/54NUMERODEWHATSAPP" style="color: var(--gold); text-decoration: none; font-weight: 500;">Escribime por WhatsApp</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">A<span>C</span></div>
+        <p class="footer-tagline">
+          Consultora con enfoque humano.
+          Asesoramiento integral para particulares y empresas
+          en toda Argentina.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/54NUMERODEWHATSAPP">WhatsApp</a></li>
+          <li><a href="mailto:email@ejemplo.com">Email</a></li>
+          <li><span>Asesoramiento en todo el país</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Profesional</h4>
+        <ul>
+          <li><span>Analuz Bricia Cruz Condori</span></li>
+          <li><span>Matrícula Nº 9596</span></li>
+          <li><span>Contadora Pública Nacional</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 · Todos los derechos reservados</span>
+      <span>Diseño hecho con cuidado</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL DE PAGO -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+
+    <div class="modal-header">
+      <span class="modal-eyebrow">Métodos de pago</span>
+      <h2 class="modal-title">Elegí tu <em>forma de pago</em></h2>
+      <p class="modal-price-summary">
+        Después de reservar tu horario, realizá el pago para confirmar la consulta · <strong style="color: var(--navy);">$50.000</strong>
+      </p>
+    </div>
+
+    <div class="payment-grid">
+
+      <!-- TARJETA 1: PAGO ONLINE -->
+      <div class="payment-card">
+        <div class="payment-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+        </div>
+        <h3>Pago online</h3>
+        <span class="payment-subtitle">Mercado Pago</span>
+
+        <ul class="payment-methods">
+          <li>Tarjeta de débito y crédito</li>
+          <li>QR Mercado Pago</li>
+          <li>Dinero en cuenta MP</li>
+          <li>Billeteras virtuales</li>
+        </ul>
+
+        <p class="payment-note">
+          Pago seguro y rápido a través de Mercado Pago. Monto final: $50.000.
+        </p>
+
+        <a href="https://mpago.li/2bjRV7f" target="_blank" rel="noopener" class="btn btn-primary">
+          Pagar con Mercado Pago
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- TARJETA 2: TRANSFERENCIA DIRECTA -->
+      <div class="payment-card recommended">
+        <div class="payment-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 7h18M3 12h18M3 17h18"/>
+            <circle cx="7" cy="7" r="1.5"/>
+            <circle cx="17" cy="12" r="1.5"/>
+            <circle cx="7" cy="17" r="1.5"/>
+          </svg>
+        </div>
+        <h3>Transferencia directa</h3>
+        <span class="payment-subtitle">Acreditación inmediata · Sin intermediarios</span>
+
+        <ul class="payment-methods">
+          <li>Desde cualquier home banking</li>
+          <li>Pago directo al banco BBVA</li>
+          <li>Sin intermediarios</li>
+        </ul>
+
+        <p class="payment-note">
+          La opción más directa. Transferí desde tu banco y enviá el comprobante por WhatsApp.
+        </p>
+
+        <button onclick="toggleBankDetails()" class="btn btn-secondary" id="bankBtn">
+          Ver datos para transferir
+          <span class="btn-arrow">↓</span>
+        </button>
+
+        <!-- Datos bancarios (inicialmente ocultos) -->
+        <div class="bank-details" id="bankDetails">
+          <div class="bank-row">
+            <span class="bank-label">Alias</span>
+            <div>
+              <span class="bank-value" id="alias">ANCCR-98</span>
+              <button class="copy-btn" onclick="copyToClipboard('alias', this)">Copiar</button>
+            </div>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">CBU</span>
+            <div>
+              <span class="bank-value" id="cbu">0170240040000032935556</span>
+              <button class="copy-btn" onclick="copyToClipboard('cbu', this)">Copiar</button>
+            </div>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Titular</span>
+            <span class="bank-value">Cruz Condori Analuz Bricia</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Banco</span>
+            <span class="bank-value">BBVA</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Tipo de cuenta</span>
+            <span class="bank-value">Caja de Ahorro</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">CUIT</span>
+            <span class="bank-value">27-41794772-3</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Monto</span>
+            <span class="bank-value" style="color: var(--gold); font-weight: 500;">$50.000</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PASO FINAL -->
+    <div class="whatsapp-step">
+      <h4>Una vez realizado el pago</h4>
+      <p>
+        Enviá el comprobante por WhatsApp y te paso el enlace para agendar el día y horario de tu consulta.
+      </p>
+      <a href="https://wa.me/54NUMERODEWHATSAPP?text=Hola%20Analuz%2C%20quiero%20agendar%20una%20consulta.%20Adjunto%20el%20comprobante%20de%20pago."
+         target="_blank" rel="noopener"
+         class="btn btn-whatsapp">
+        Enviar comprobante por WhatsApp
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="legal-note">
+      Ambas opciones de pago tienen el mismo valor final de $50.000. Elegí la que te resulte más cómoda. Una vez realizado el pago, enviá el comprobante por WhatsApp para confirmar tu reserva.
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Menú mobile
+  const navToggle = document.querySelector('.nav-toggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  navToggle?.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== MODAL DE PAGO =====
+  const modal = document.getElementById('paymentModal');
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset: cerrar los datos bancarios cuando se cierra el modal
+    document.getElementById('bankDetails').classList.remove('visible');
+    const btn = document.getElementById('bankBtn');
+    if (btn) btn.innerHTML = 'Ver datos para transferir <span class="btn-arrow">↓</span>';
+  }
+
+  // Cerrar al clickear fuera del modal
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  // Toggle de datos bancarios
+  function toggleBankDetails() {
+    const details = document.getElementById('bankDetails');
+    const btn = document.getElementById('bankBtn');
+    const isVisible = details.classList.contains('visible');
+
+    if (isVisible) {
+      details.classList.remove('visible');
+      btn.innerHTML = 'Ver datos para transferir <span class="btn-arrow">↓</span>';
+    } else {
+      details.classList.add('visible');
+      btn.innerHTML = 'Ocultar datos <span class="btn-arrow">↑</span>';
+    }
+  }
+
+  // Copiar al portapapeles
+  function copyToClipboard(elementId, button) {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const originalText = button.innerText;
+      button.innerText = '✓ Copiado';
+      button.classList.add('copied');
+      setTimeout(() => {
+        button.innerText = originalText;
+        button.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // Fallback para navegadores viejos
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      button.innerText = '✓ Copiado';
+      setTimeout(() => { button.innerText = 'Copiar'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
