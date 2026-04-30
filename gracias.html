@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserva recibida · AC Consultora</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #1a2e4f;
+    --navy-deep: #0f1e36;
+    --gold: #b8956a;
+    --gold-light: #d4b88a;
+    --cream: #faf7f2;
+    --cream-dark: #f0ebe0;
+    --text: #2a2a2a;
+    --text-muted: #6b6b6b;
+    --border: rgba(26, 46, 79, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 720px;
+    width: 100%;
+    background: white;
+    padding: 4rem 3rem;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(26, 46, 79, 0.08);
+    border: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .check-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--gold);
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .alert {
+    background: rgba(184, 149, 106, 0.1);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 2px;
+  }
+
+  .alert strong {
+    color: var(--navy);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .alert p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .step {
+    margin-bottom: 2.5rem;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .payment-section {
+    background: var(--cream);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .payment-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .payment-recommended {
+    background: rgba(184, 149, 106, 0.05);
+    border: 2px solid var(--gold);
+    position: relative;
+  }
+
+  .recommended-badge {
+    position: absolute;
+    top: -10px;
+    right: 1rem;
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(26, 46, 79, 0.08);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .data-row:last-child {
+    border-bottom: none;
+  }
+
+  .data-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .data-value-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+
+  .data-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    text-align: right;
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover {
+    background: var(--navy);
+    color: var(--cream);
+  }
+
+  .copy-btn.copied {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1.2rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    width: 100%;
+  }
+
+  .btn-mp {
+    background: #00B1EA;
+    color: white;
+  }
+
+  .btn-mp:hover {
+    background: #008FBF;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 177, 234, 0.3);
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+  }
+
+  .btn-whatsapp:hover {
+    background: #1fa855;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(37, 211, 102, 0.3);
+  }
+
+  .final-step {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 2rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .final-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold-light);
+  }
+
+  .final-step p {
+    color: rgba(250, 247, 242, 0.85);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .footer-link {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link a:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 2.5rem 1.5rem;
+    }
+
+    h1 { font-size: 1.8rem; }
+
+    .data-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .data-value-wrapper {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .data-value { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">A<span>C</span></div>
+    <div class="check-icon">✓</div>
+    <h1>¡Reserva <em>recibida</em>!</h1>
+    <p class="subtitle">
+      Tu horario está reservado. Solo falta confirmar el pago.
+    </p>
+  </div>
+
+  <div class="alert">
+    <strong>⏱ Tu cita queda en estado PENDIENTE</strong>
+    <p>Se confirmará automáticamente una vez verificado el pago. Plazo: 24 horas.</p>
+  </div>
+
+  <!-- PASO 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <div class="step-title">Realizá el pago de $50.000</div>
+    </div>
+
+    <!-- Transferencia (recomendada) -->
+    <div class="payment-section payment-recommended">
+      <span class="recommended-badge">Recomendado</span>
+      <div class="payment-title">🏦 Transferencia bancaria</div>
+
+      <div class="data-row">
+        <span class="data-label">Alias</span>
+        <div class="data-value-wrapper">
+          <span class="data-value" id="alias">ANCCR-98</span>
+          <button class="copy-btn" onclick="copyToClipboard('alias', this)">Copiar</button>
+        </div>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">CBU</span>
+        <div class="data-value-wrapper">
+          <span class="data-value" id="cbu">0170240040000032935556</span>
+          <button class="copy-btn" onclick="copyToClipboard('cbu', this)">Copiar</button>
+        </div>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">Titular</span>
+        <span class="data-value">Cruz Condori Analuz Bricia</span>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">Banco</span>
+        <span class="data-value">BBVA</span>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">CUIT</span>
+        <span class="data-value">27-41794772-3</span>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">Monto</span>
+        <span class="data-value" style="color: var(--gold); font-weight: 500;">$50.000</span>
+      </div>
+    </div>
+
+    <!-- Mercado Pago -->
+    <div class="payment-section">
+      <div class="payment-title">💳 Mercado Pago</div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Tarjeta de débito/crédito, QR, billeteras virtuales.
+      </p>
+      <a href="https://mpago.la/2fWUXQ9" target="_blank" rel="noopener" class="btn btn-mp">
+        Pagar con Mercado Pago →
+      </a>
+    </div>
+  </div>
+
+  <!-- PASO 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <div class="step-title">Enviá el comprobante por WhatsApp</div>
+    </div>
+
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+      Adjuntá el comprobante de pago en el chat. Una vez verificado, recibirás la confirmación de tu cita por email.
+    </p>
+
+    <a href="https://wa.me/54NUMERODEWHATSAPP?text=Hola%20Analuz%2C%20te%20env%C3%ADo%20el%20comprobante%20de%20pago%20de%20mi%20consulta%20agendada." 
+       target="_blank" rel="noopener" 
+       class="btn btn-whatsapp">
+      💬 Enviar comprobante por WhatsApp →
+    </a>
+  </div>
+
+  <!-- PASO 3 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <div class="step-title">Confirmación final</div>
+    </div>
+
+    <div class="final-step">
+      <h3>Recibirás un email con:</h3>
+      <p>
+        ✅ Confirmación definitiva de tu cita<br>
+        📹 Link de Google Meet para la videollamada
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-link">
+    <a href="/">← Volver al inicio</a>
+  </div>
+
+</div>
+
+<script>
+  function copyToClipboard(elementId, button) {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      button.innerText = '✓ Copiado';
+      button.classList.add('copied');
+      setTimeout(() => {
+        button.innerText = 'Copiar';
+        button.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      button.innerText = '✓ Copiado';
+      setTimeout(() => { button.innerText = 'Copiar'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
