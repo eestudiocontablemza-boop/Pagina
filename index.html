@@ -67,14 +67,20 @@
   }
 
   .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    letter-spacing: 0.15em;
-    color: var(--navy);
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    line-height: 0;
   }
 
-  .nav-logo span { color: var(--gold); }
+  .nav-logo-svg {
+    width: 56px;
+    height: 56px;
+    display: block;
+  }
+
+  .nav-logo-svg .nav-letter-a { fill: var(--navy); }
+  .nav-logo-svg .nav-letter-c { fill: var(--gold); }
 
   .nav-links {
     display: flex;
@@ -336,83 +342,25 @@
     z-index: 0;
   }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 6rem;
-    align-items: center;
+  /* === Contenido === */
+  .about-content {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
     position: relative;
     z-index: 1;
   }
 
-  .about-image-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* === Imagen circular === */
-  .about-image {
-    width: 280px;
-    height: 280px;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-    margin: 0 auto;
-    box-shadow: 0 10px 40px rgba(26, 46, 79, 0.15);
-  }
-
-  /* Marco circular dorado exterior */
-  .about-image::before {
-    content: '';
-    position: absolute;
-    inset: -16px;
-    border: 1px solid var(--gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  /* Marco circular navy interior (sutil) */
-  .about-image::after {
-    content: '';
-    position: absolute;
-    inset: -28px;
-    border: 1px solid rgba(26, 46, 79, 0.15);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: -2;
-  }
-
-  .about-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(20%) contrast(1.02);
-    transition: filter 0.6s ease, transform 0.8s ease;
-  }
-
-  .about-photo:hover {
-    filter: grayscale(0%) contrast(1.05);
-    transform: scale(1.03);
-  }
-
-  /* === Contenido === */
-  .about-content {
-    padding: 1rem 0;
-  }
-
   .about-content .section-eyebrow {
-    text-align: left;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
   }
 
-  .about-content .section-eyebrow::before {
+  .about-content .section-eyebrow::before,
+  .about-content .section-eyebrow::after {
     content: '';
     width: 32px;
     height: 1px;
@@ -440,7 +388,9 @@
     margin-bottom: 1.5rem;
     font-size: 1.05rem;
     line-height: 1.85;
-    max-width: 540px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .about-content p:last-of-type {
@@ -455,6 +405,7 @@
     display: flex;
     gap: 4rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .credential-item {
@@ -462,6 +413,7 @@
     flex-direction: column;
     gap: 0.4rem;
     position: relative;
+    text-align: center;
   }
 
   .credential-label {
@@ -486,51 +438,16 @@
       padding: 6rem 0;
     }
 
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 4rem;
-    }
-
-    .about-image {
-      width: 240px;
-      height: 240px;
-    }
-
-    .about-content {
-      padding: 0;
-      text-align: center;
-    }
-
-    .about-content .section-eyebrow {
-      justify-content: center;
-    }
-
-    .about-content p {
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
     .credentials {
       gap: 2.5rem;
       margin-top: 2.5rem;
       padding-top: 2rem;
-      justify-content: center;
     }
   }
 
   @media (max-width: 600px) {
     .about {
       padding: 5rem 0;
-    }
-
-    .about-grid {
-      gap: 3rem;
-    }
-
-    .about-image {
-      width: 200px;
-      height: 200px;
     }
 
     .about-content h2 {
@@ -540,8 +457,6 @@
     .credentials {
       flex-direction: column;
       gap: 1.5rem;
-      align-items: center;
-      text-align: center;
     }
   }
 
@@ -881,13 +796,19 @@
   }
 
   .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    letter-spacing: 0.15em;
+    display: inline-block;
     margin-bottom: 1rem;
+    line-height: 0;
   }
 
-  .footer-brand span { color: var(--gold); }
+  .footer-logo-svg {
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+
+  .footer-logo-svg .footer-letter-a { fill: var(--cream); }
+  .footer-logo-svg .footer-letter-c { fill: var(--gold); }
 
   .footer-tagline {
     color: rgba(250, 247, 242, 0.7);
@@ -1363,7 +1284,18 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">A<span>C</span></div>
+  <a href="#" class="nav-logo" aria-label="AC Consultora">
+    <svg class="nav-logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <text class="nav-letter-a" x="90" y="230"
+            font-family="Cormorant Garamond, serif"
+            font-size="280"
+            font-weight="400">A</text>
+      <text class="nav-letter-c" x="200" y="320"
+            font-family="Cormorant Garamond, serif"
+            font-size="280"
+            font-weight="400">C</text>
+    </svg>
+  </a>
   <ul class="nav-links">
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#servicios">Servicios</a></li>
@@ -1427,36 +1359,29 @@
 <!-- SOBRE MÍ -->
 <section class="about" id="sobre-mi">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-image-wrapper reveal">
-        <div class="about-image">
-          <img src="analuz.jpg" alt="Analuz Cruz - Contadora Pública Nacional" class="about-photo">
-        </div>
-      </div>
-      <div class="about-content reveal">
-        <span class="section-eyebrow">Sobre mí</span>
-        <h2>Contadora pública,<br><em>con mirada humana</em>.</h2>
-        <p>
-          Soy Analuz Cruz, Contadora Pública Nacional. Acompaño
-          a particulares y empresas en sus decisiones económicas
-          con un enfoque claro, cercano y sin tecnicismos innecesarios.
-        </p>
-        <p>
-          Creo que la contabilidad no debería ser una caja negra.
-          Mi trabajo es traducir números en información útil para que
-          vos puedas tomar decisiones con tranquilidad, desde cualquier
-          provincia del país.
-        </p>
+    <div class="about-content reveal">
+      <span class="section-eyebrow">Sobre mí</span>
+      <h2>Contadora pública,<br><em>con mirada humana</em>.</h2>
+      <p>
+        Soy Analuz Cruz, Contadora Pública Nacional. Acompaño
+        a particulares y empresas en sus decisiones económicas
+        con un enfoque claro, cercano y sin tecnicismos innecesarios.
+      </p>
+      <p>
+        Creo que la contabilidad no debería ser una caja negra.
+        Mi trabajo es traducir números en información útil para que
+        vos puedas tomar decisiones con tranquilidad, desde cualquier
+        provincia del país.
+      </p>
 
-        <div class="credentials">
-          <div class="credential-item">
-            <span class="credential-label">Matrícula</span>
-            <span class="credential-value">Nº 9596</span>
-          </div>
-          <div class="credential-item">
-            <span class="credential-label">Alcance</span>
-            <span class="credential-value">Todo el país</span>
-          </div>
+      <div class="credentials">
+        <div class="credential-item">
+          <span class="credential-label">Matrícula</span>
+          <span class="credential-value">Nº 9596</span>
+        </div>
+        <div class="credential-item">
+          <span class="credential-label">Alcance</span>
+          <span class="credential-value">Todo el país</span>
         </div>
       </div>
     </div>
@@ -1690,7 +1615,18 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">A<span>C</span></div>
+        <div class="footer-brand">
+          <svg class="footer-logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <text class="footer-letter-a" x="90" y="230"
+                  font-family="Cormorant Garamond, serif"
+                  font-size="280"
+                  font-weight="400">A</text>
+            <text class="footer-letter-c" x="200" y="320"
+                  font-family="Cormorant Garamond, serif"
+                  font-size="280"
+                  font-weight="400">C</text>
+          </svg>
+        </div>
         <p class="footer-tagline">
           Consultora con enfoque humano.
           Asesoramiento integral para particulares y empresas
