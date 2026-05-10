@@ -108,6 +108,26 @@
 
   .nav-links a:hover::after { width: 100%; }
 
+  /* Botón especial AGENDAR en el menú */
+  .nav-links a.nav-cta {
+    background: var(--gold);
+    color: var(--cream);
+    padding: 0.6rem 1.4rem;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links a.nav-cta:hover {
+    background: var(--navy);
+    color: var(--cream);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(184, 149, 106, 0.3);
+  }
+
+  .nav-links a.nav-cta::after {
+    display: none;
+  }
+
   .nav-toggle {
     display: none;
     background: none;
@@ -295,103 +315,234 @@
     color: var(--gold);
   }
 
-  /* ===== SOBRE MÍ ===== */
+  /* ===== SOBRE MÍ - Editorial Premium ===== */
   .about {
     background: var(--cream-dark);
     position: relative;
+    padding: 9rem 0;
+    overflow: hidden;
+  }
+
+  /* Decoración sutil de fondo */
+  .about::before {
+    content: '';
+    position: absolute;
+    top: 8%;
+    right: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(184, 149, 106, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 5rem;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-image-wrapper {
+    display: flex;
+    justify-content: center;
     align-items: center;
   }
 
+  /* === Imagen circular === */
   .about-image {
-    aspect-ratio: 3/4;
+    width: 280px;
+    height: 280px;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
     position: relative;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(26, 46, 79, 0.15);
   }
 
+  /* Marco circular dorado exterior */
   .about-image::before {
     content: '';
     position: absolute;
-    top: 20px;
-    left: 20px;
-    right: -20px;
-    bottom: -20px;
+    inset: -16px;
     border: 1px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
     z-index: -1;
-    border-radius: 2px;
   }
 
-  .about-image-placeholder {
+  /* Marco circular navy interior (sutil) */
+  .about-image::after {
+    content: '';
     position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold-light);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.2em;
-    text-align: center;
-    padding: 2rem;
-    line-height: 1.8;
+    inset: -28px;
+    border: 1px solid rgba(26, 46, 79, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -2;
   }
 
-  .about-content .section-eyebrow { text-align: left; }
+  .about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) contrast(1.02);
+    transition: filter 0.6s ease, transform 0.8s ease;
+  }
+
+  .about-photo:hover {
+    filter: grayscale(0%) contrast(1.05);
+    transform: scale(1.03);
+  }
+
+  /* === Contenido === */
+  .about-content {
+    padding: 1rem 0;
+  }
+
+  .about-content .section-eyebrow {
+    text-align: left;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-content .section-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
 
   .about-content h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
     color: var(--navy);
     font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 2rem;
-    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
   }
 
   .about-content h2 em {
     font-style: italic;
     color: var(--gold);
+    font-weight: 300;
   }
 
   .about-content p {
     color: var(--text-muted);
     margin-bottom: 1.5rem;
     font-size: 1.05rem;
+    line-height: 1.85;
+    max-width: 540px;
   }
 
+  .about-content p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* === Credenciales editoriales === */
   .credentials {
-    margin-top: 2.5rem;
+    margin-top: 3.5rem;
     padding-top: 2.5rem;
     border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
   }
 
   .credential-item {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.4rem;
+    position: relative;
   }
 
   .credential-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--gold);
+    font-weight: 500;
   }
 
   .credential-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     color: var(--navy);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 968px) {
+    .about {
+      padding: 6rem 0;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .about-image {
+      width: 240px;
+      height: 240px;
+    }
+
+    .about-content {
+      padding: 0;
+      text-align: center;
+    }
+
+    .about-content .section-eyebrow {
+      justify-content: center;
+    }
+
+    .about-content p {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .credentials {
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .about {
+      padding: 5rem 0;
+    }
+
+    .about-grid {
+      gap: 3rem;
+    }
+
+    .about-image {
+      width: 200px;
+      height: 200px;
+    }
+
+    .about-content h2 {
+      margin-bottom: 2rem;
+    }
+
+    .credentials {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
   }
 
   /* ===== SERVICIOS ===== */
@@ -521,6 +672,34 @@
     color: rgba(250, 247, 242, 0.75);
     font-size: 0.95rem;
     line-height: 1.7;
+  }
+
+  /* ===== RESEÑAS / TESTIMONIOS ===== */
+  .reviews {
+    background: var(--cream);
+    padding: 6rem 0;
+  }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .reviews-widget-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Aseguramos que el widget se vea bien dentro del estilo de la página */
+  .reviews-widget-wrapper > * {
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .reviews {
+      padding: 4rem 0;
+    }
   }
 
   /* ===== CONTACTO ===== */
@@ -1189,7 +1368,7 @@
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#por-que">Por qué elegirme</a></li>
-    <li><a href="#agendar">Agendar</a></li>
+    <li><a href="#agendar" class="nav-cta">Agendar</a></li>
   </ul>
   <button class="nav-toggle" aria-label="Menú">☰</button>
 </nav>
@@ -1220,7 +1399,7 @@
             Agendar consulta
             <span class="btn-arrow">→</span>
           </a>
-          <a href="https://wa.me/54NUMERODEWHATSAPP" class="btn btn-secondary">
+          <a href="https://wa.me/5492615929090" class="btn btn-secondary">
             Escribir por WhatsApp
           </a>
         </div>
@@ -1249,19 +1428,18 @@
 <section class="about" id="sobre-mi">
   <div class="container">
     <div class="about-grid">
-      <div class="about-image reveal">
-        <div class="about-image-placeholder">
-          [FOTO<br>PROFESIONAL]
+      <div class="about-image-wrapper reveal">
+        <div class="about-image">
+          <img src="analuz.jpg" alt="Analuz Cruz - Contadora Pública Nacional" class="about-photo">
         </div>
       </div>
       <div class="about-content reveal">
         <span class="section-eyebrow">Sobre mí</span>
-        <h2>Contadora pública, <em>con mirada humana</em>.</h2>
+        <h2>Contadora pública,<br><em>con mirada humana</em>.</h2>
         <p>
-          Soy Analuz Bricia Cruz Condori, contadora pública nacional
-          matriculada en Argentina. Acompaño a particulares y empresas
-          en sus decisiones económicas con un enfoque claro, cercano
-          y sin tecnicismos innecesarios.
+          Soy Analuz Cruz, Contadora Pública Nacional. Acompaño
+          a particulares y empresas en sus decisiones económicas
+          con un enfoque claro, cercano y sin tecnicismos innecesarios.
         </p>
         <p>
           Creo que la contabilidad no debería ser una caja negra.
@@ -1419,6 +1597,21 @@
   </div>
 </section>
 
+<!-- RESEÑAS -->
+<section class="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <span class="section-eyebrow">Testimonios</span>
+      <h2 class="section-title">Lo que dicen <em>mis clientes</em></h2>
+    </div>
+
+    <div class="reviews-widget-wrapper reveal">
+      <!-- Get Review Widget -->
+      <script src="https://getreviewwidget.com/widget.js" data-widget-id="1cb957f2-50a6-4096-b3b5-d6da79ec5b60" async></script>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section class="contact" id="agendar" style="scroll-margin-top: 80px;">
   <div class="container">
@@ -1458,26 +1651,34 @@
         style="width:100%;height:100%;min-height:800px"
         data-cal-link="analuz-cruz-dyxp23/consulta-profesional-contable"
         data-cal-config='{"layout":"month_view","theme":"light"}'
+        data-cal-namespace="consulta"
       ></div>
       <script type="text/javascript">
         (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-        Cal("init", {origin:"https://cal.com"});
-        Cal("inline", {
+        Cal("init", "consulta", {origin:"https://cal.com"});
+        Cal.ns.consulta("inline", {
           elementOrSelector:"div[data-cal-link='analuz-cruz-dyxp23/consulta-profesional-contable']",
           calLink: "analuz-cruz-dyxp23/consulta-profesional-contable",
           layout: "month_view",
           config: {
-            theme: "light"
+            theme: "light",
+            layout: "month_view",
+            "cal.embed.locale": "es"
           }
         });
-        Cal("ui", {"theme":"light","styles":{"branding":{"brandColor":"#b8956a"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        Cal.ns.consulta("ui", {
+          theme: "light",
+          styles: {branding: {brandColor: "#b8956a"}},
+          hideEventTypeDetails: false,
+          layout: "month_view"
+        });
       </script>
     </div>
 
     <div style="text-align: center; margin-top: 3rem;">
       <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 600px; margin: 0 auto;">
         ¿Preferís consultar algo primero? 
-        <a href="https://wa.me/54NUMERODEWHATSAPP" style="color: var(--gold); text-decoration: none; font-weight: 500;">Escribime por WhatsApp</a>
+        <a href="https://wa.me/5492615929090" style="color: var(--gold); text-decoration: none; font-weight: 500;">Escribime por WhatsApp</a>
       </p>
     </div>
 
@@ -1500,8 +1701,8 @@
       <div class="footer-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="https://wa.me/54NUMERODEWHATSAPP">WhatsApp</a></li>
-          <li><a href="mailto:email@ejemplo.com">Email</a></li>
+          <li><a href="https://wa.me/5492615929090">WhatsApp</a></li>
+          <li><a href="mailto:eestudiocontablemza@gmail.com">Email</a></li>
           <li><span>Asesoramiento en todo el país</span></li>
         </ul>
       </div>
@@ -1509,7 +1710,7 @@
       <div class="footer-col">
         <h4>Profesional</h4>
         <ul>
-          <li><span>Analuz Bricia Cruz Condori</span></li>
+          <li><span>Analuz Cruz</span></li>
           <li><span>Matrícula Nº 9596</span></li>
           <li><span>Contadora Pública Nacional</span></li>
         </ul>
@@ -1560,7 +1761,7 @@
           Pago seguro y rápido a través de Mercado Pago. Monto final: $50.000.
         </p>
 
-        <a href="https://mpago.li/2bjRV7f" target="_blank" rel="noopener" class="btn btn-primary">
+        <a href="https://mpago.la/2fWUXQ9" target="_blank" rel="noopener" class="btn btn-primary">
           Pagar con Mercado Pago
           <span class="btn-arrow">→</span>
         </a>
@@ -1641,7 +1842,7 @@
       <p>
         Enviá el comprobante por WhatsApp y te paso el enlace para agendar el día y horario de tu consulta.
       </p>
-      <a href="https://wa.me/54NUMERODEWHATSAPP?text=Hola%20Analuz%2C%20quiero%20agendar%20una%20consulta.%20Adjunto%20el%20comprobante%20de%20pago."
+      <a href="https://wa.me/5492615929090?text=Hola%20Analuz%2C%20te%20env%C3%ADo%20el%20comprobante%20de%20pago%20de%20mi%20consulta."
          target="_blank" rel="noopener"
          class="btn btn-whatsapp">
         Enviar comprobante por WhatsApp
